@@ -70,15 +70,20 @@ button {
 @media (max-width: 575.8px) {
   .header {
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 @media (max-width: 575.8px) {
   .header-line {
-    display: block;
+    display: flex;
     width: 38rem;
     background-color: #d6d3e2;
     height: 0.2rem;
     align-items: center;
+    justify-content: center;
+    margin: auto;
   }
 }
 .header-cta {
