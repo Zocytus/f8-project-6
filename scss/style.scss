@@ -26,6 +26,18 @@ button {
     justify-content: space-between;
     align-items: center;
 }
+@mixin screen($device) {
+    @if $device == pc {
+        @media (min-width: 768.8px) {
+            @content;
+        }
+    }
+    @if $device == mobile {
+        @media (max-width: 575.8px) {
+            @content;
+        }
+    }
+}
 .text-title {
     color: #080415;
     font-family: DM Sans;
@@ -62,7 +74,41 @@ button {
 // Header
 .header {
     margin: 2rem 0 4.4rem 0;
+    position: relative;
+    @include screen(mobile) {
+        width: 100vw;
+    }
+    &-line {
+        @include screen(mobile) {
+            display: block;
+            width: 38rem;
+            background-color: #d6d3e2;
+            height: 0.2rem;
+            align-items: center;
+        }
+    }
+    &-cta {
+        @include screen(pc) {
+            display: none;
+        }
+        @include screen(mobile) {
+            transform: translateX(500%);
+        }
+        width: 4.8rem;
+        height: 4.8rem;
+    }
+    &-logo {
+        &__img {
+            @include screen(mobile) {
+                position: relative;
+                transform: translateX(-170%);
+            }
+        }
+    }
     &-title {
+        @include screen(mobile) {
+            display: none;
+        }
         margin-left: 1rem;
         color: #080415;
         font-size: 2.2rem;
@@ -71,6 +117,9 @@ button {
         text-decoration-line: underline;
     }
     &-item {
+        @include screen(mobile) {
+            display: none;
+        }
         color: #51586a;
         font-size: 1.8rem;
         font-weight: 400;
@@ -81,8 +130,25 @@ button {
         }
     }
 }
+.logo {
+    @include screen(mobile) {
+        transform: translateX(480%);
+    }
+}
 // Hero
+.hero-mobile {
+    @include screen(mobile) {
+        flex-direction: column-reverse;
+    }
+}
 .hero {
+    &-img {
+        @include screen(mobile) {
+            margin-left: 15%;
+            width: 25.9rem;
+            height: 35.5rem;
+        }
+    }
     &-heading {
         margin-bottom: 2rem;
         color: #080415;
@@ -90,6 +156,15 @@ button {
         font-weight: 500;
         line-height: 7.6rem; /* 95% */
         letter-spacing: -0.32rem;
+        @include screen(mobile) {
+            width: 26rem;
+            font-size: 4.2rem;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 5rem; /* 119.048% */
+            letter-spacing: -0.168rem;
+            margin-left: 2rem;
+        }
     }
     &-desc {
         width: 37rem;
@@ -98,6 +173,16 @@ button {
         font-size: 1.8rem;
         font-weight: 400;
         line-height: 3rem;
+        @include screen(mobile) {
+            width: 31.8rem;
+            margin-left: 2rem;
+            color: #51586a;
+            font-family: DM Sans;
+            font-size: 1.6rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 2.6rem; /* 162.5% */
+        }
     }
     &-ctn {
         margin-bottom: 10.4rem;
@@ -109,6 +194,10 @@ button {
             font-size: 1.8rem;
             line-height: 3rem;
             text-decoration-line: underline;
+            @include screen(mobile) {
+                padding: 1.2rem 3.1rem;
+                margin-left: 2rem;
+            }
             &:hover {
                 background: #5d3bee;
                 color: #fdfdfd;
@@ -121,14 +210,25 @@ button {
         &__icon {
             cursor: pointer;
         }
+        @include screen(mobile) {
+            column-gap: 1rem;
+            margin-top: -7rem;
+            margin-left: 2rem;
+        }
     }
     &-deco {
         scale: 0.75;
         z-index: -1;
         left: -30%;
         bottom: -20%;
+        @include screen(mobile) {
+            display: none;
+        }
     }
     &-deco2 {
+        @include screen(mobile) {
+            display: none;
+        }
         z-index: -1;
         right: -32%;
         scale: 0.4;
@@ -136,9 +236,17 @@ button {
     }
 }
 // Trusted
+.trusted-mobile {
+    flex-direction: column;
+}
 .trusted {
     margin-top: 10rem;
     &-title {
+        @include screen(mobile) {
+            text-align: center;
+            margin: auto;
+            margin-bottom: 5.2rem;
+        }
         margin-left: 10rem;
         position: relative;
         width: 25.3rem;
@@ -148,6 +256,9 @@ button {
         line-height: 5rem; /* 119.048% */
         letter-spacing: -0.168rem;
         &::before {
+            @include screen(mobile) {
+                display: none;
+            }
             content: "";
             position: absolute;
             display: block;
@@ -163,6 +274,13 @@ button {
         grid-template-columns: repeat(4, 1fr);
         align-items: center;
         gap: 2rem;
+        @include screen(mobile) {
+            grid-template-columns: repeat(2, 1fr);
+            margin: auto;
+            align-items: center;
+            justify-content: center;
+            margin-left: 2rem;
+        }
     }
     &-item {
         display: flex;
@@ -174,7 +292,12 @@ button {
         }
     }
 }
-// Service
+//
+.service-mobile {
+    @include screen(mobile) {
+        margin-left: 1rem;
+    }
+}
 .service {
     margin-top: 13.5rem;
     &-desc {
@@ -182,11 +305,29 @@ button {
         margin-top: 2rem;
         margin-bottom: 6rem;
         width: 53.5rem;
+        @include screen(mobile) {
+            width: 35rem;
+        }
+    }
+    &-img {
+        @include screen(mobile) {
+            width: 6.2rem;
+            height: 6.2rem;
+        }
     }
     &-item {
+        @include screen(mobile) {
+            margin-left: 1rem;
+        }
         padding: 3.3rem 1.2rem;
         &__title {
             margin-top: 2.2rem;
+            @include screen(mobile) {
+                font-size: 2.8rem;
+                font-weight: 500;
+                line-height: 3.6rem; /* 128.571% */
+                letter-spacing: -0.112rem;
+            }
         }
         &__desc {
             margin-top: 1.5rem;
@@ -213,10 +354,26 @@ button {
         }
     }
     &-title {
+        @include screen(mobile) {
+            font-size: 3.6rem;
+            text-align: center;
+            font-weight: 500;
+            line-height: 4.2rem; /* 116.667% */
+            letter-spacing: -0.144rem;
+        }
         width: 46.8rem;
         letter-spacing: -0.224rem;
     }
     &-desc {
+        @include screen(mobile) {
+            margin: auto;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.6rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 2.6rem;
+        }
         color: #fff;
         margin-left: 16rem;
         width: 37rem;
@@ -228,11 +385,26 @@ button {
         grid-template-columns: repeat(2, 1fr);
         justify-content: center;
         gap: 3rem;
+        @include screen(mobile) {
+            grid-template-columns: repeat(1, 1fr);
+            justify-content: space-evenly;
+            column-gap: 0;
+            row-gap: 2rem;
+        }
     }
     &-img {
+        @include screen(mobile) {
+            width: 12.2rem;
+            height: 9.3rem;
+            margin-right: 1rem;
+        }
         z-index: 2;
     }
     &-item {
+        @include screen(mobile) {
+            width: 35rem;
+            height: 17rem;
+        }
         background: #fbfaff;
         width: 65rem;
         height: 23.4rem;
@@ -242,7 +414,16 @@ button {
         right: 0;
     }
     &-content {
+        @include screen(mobile) {
+            margin-left: 1rem;
+        }
         &__title {
+            @include screen(mobile) {
+                font-size: 2.4rem;
+                font-weight: 500;
+                line-height: 3.4rem; /* 141.667% */
+                letter-spacing: -0.096rem;
+            }
             margin-bottom: 1px;
             font-size: 3.2rem;
             color: #080415;
@@ -251,6 +432,13 @@ button {
             letter-spacing: -0.128rem;
         }
         &__desc {
+            @include screen(mobile) {
+                width: 17rem;
+                color: #51586a;
+                font-size: 1.4rem;
+                font-weight: 400;
+                line-height: 2rem; /* 142.857% */
+            }
             margin-bottom: 2rem;
             color: #51586a;
             width: 22rem;
@@ -259,6 +447,13 @@ button {
             line-height: 2.3rem; /* 143.75% */
         }
         &__btn {
+            @include screen(mobile) {
+                font-size: 1.6rem;
+                font-weight: 700;
+                line-height: 2.8rem; /* 175% */
+                text-decoration-line: underline;
+                margin-left: 1rem;
+            }
             cursor: pointer;
             color: #080415;
             font-size: 1.8rem;
@@ -274,7 +469,20 @@ button {
 // About
 .about {
     &-heading {
+        &__img {
+            @include screen(mobile) {
+                width: 1.8rem;
+                height: 1.8rem;
+                margin-left: 0.4rem;
+            }
+        }
         &__title {
+            @include screen(mobile) {
+                font-size: 2rem;
+                font-weight: 500;
+                line-height: 4rem; /* 200% */
+                letter-spacing: -0.08rem;
+            }
             margin: 0 1rem 1rem 0;
             color: #5d3bee;
             font-size: 3.2rem;
@@ -284,8 +492,23 @@ button {
         }
         &__content {
             margin-bottom: 1.5rem;
+            @include screen(mobile) {
+                font-size: 3.6rem;
+                font-weight: 500;
+                line-height: 4.2rem; /* 116.667% */
+                letter-spacing: -0.144rem;
+            }
         }
         &__desc {
+            @include screen(mobile) {
+                margin: auto;
+                margin-bottom: 8rem;
+                width: 35rem;
+                text-align: center;
+                font-size: 1.6rem;
+                font-weight: 400;
+                line-height: 2.6rem; /* 162.5% */
+            }
             width: 57rem;
             margin: auto;
             margin-bottom: 7rem;
@@ -297,6 +520,10 @@ button {
         display: flex;
         justify-content: space-between;
         width: 95rem;
+        @include screen(mobile) {
+            width: 100%;
+            justify-content: space-around;
+        }
         &::before {
             top: -2rem;
             position: absolute;
@@ -318,6 +545,14 @@ button {
             opacity: 0.2;
         }
         &__number {
+            @include screen(mobile) {
+                color: #080415;
+                font-size: 3rem;
+                font-weight: 500;
+                line-height: 4.2rem; /* 140% */
+                letter-spacing: 0.09rem;
+                text-decoration-line: underline;
+            }
             color: #080415;
             font-size: 5.6rem;
             font-weight: 500;
@@ -330,6 +565,14 @@ button {
             font-size: 1.8rem;
             font-weight: 400;
             line-height: 3rem; /* 166.667% */
+            @include screen(mobile) {
+                margin-top: 1rem;
+                width: 7.4rem;
+                color: #51586a;
+                font-size: 1.6rem;
+                font-weight: 400;
+                line-height: 2.2rem;
+            }
         }
     }
     &-video {
@@ -342,6 +585,11 @@ button {
         &:hover {
             opacity: 0.8;
         }
+        @include screen(mobile) {
+            width: 35rem;
+            height: 27.6rem;
+            object-fit: cover;
+        }
     }
 }
 // Tes
@@ -349,13 +597,40 @@ button {
     background: #fbfaff;
     &-title {
         margin-bottom: 2rem;
+        @include screen(mobile) {
+            color: #080415;
+            font-size: 3.6rem;
+            font-weight: 500;
+            line-height: 4.2rem; /* 116.667% */
+            letter-spacing: -0.144rem;
+        }
     }
     &-desc {
+        @include screen(mobile) {
+            width: 35rem;
+            color: #51586a;
+            margin-top: 2rem;
+            margin: auto;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 2.6rem; /* 162.5% */
+        }
         width: 57rem;
         margin: auto;
         margin-bottom: 6rem;
     }
     &-p {
+        @include screen(mobile) {
+            margin-top: 4rem;
+            margin-bottom: 5rem;
+            width: 35rem;
+            color: #51586a;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 400;
+            line-height: 3rem;
+        }
         width: 68rem;
         margin: auto;
         margin-bottom: 3.6rem;
@@ -427,7 +702,28 @@ button {
 }
 // Faq
 .faq {
+    &-content {
+        @include screen(mobile) {
+            margin-left: 2rem;
+        }
+    }
+    &-btn {
+        @include screen(mobile) {
+            width: 3.2rem;
+            height: 3.2rem;
+            margin-right: 2rem;
+        }
+    }
     &-title {
+        @include screen(mobile) {
+            margin-left: 2rem;
+            width: 30rem;
+            color: #080415;
+            font-size: 3.6rem;
+            font-weight: 500;
+            line-height: 4.2rem; /* 116.667% */
+            letter-spacing: -0.144rem;
+        }
         margin-bottom: 8rem;
         width: 57.5rem;
         color: #080415;
@@ -437,6 +733,9 @@ button {
         letter-spacing: -0.224rem;
     }
     &-container {
+        @include screen(mobile) {
+            align-items: flex-start;
+        }
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -454,6 +753,14 @@ button {
     }
     &-content {
         &__title {
+            @include screen(mobile) {
+                color: #5d3bee;
+                width: 26rem;
+                font-size: 2.4rem;
+                font-weight: 500;
+                line-height: 3rem; /* 125% */
+                letter-spacing: -0.096rem;
+            }
             margin-bottom: 2.3rem;
             color: #5d3bee;
             font-size: 3.2rem;
@@ -462,6 +769,14 @@ button {
             letter-spacing: -0.128rem;
         }
         &__desc {
+            @include screen(mobile) {
+                width: 29.6rem;
+                color: #51586a;
+                font-size: 1.6rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 2.6rem; /* 162.5% */
+            }
             width: 48.7rem;
             color: #51586a;
             font-size: 1.8rem;
@@ -477,12 +792,37 @@ button {
 }
 // Gallery
 .gallery {
+    &-title {
+        @include screen(mobile) {
+            color: #080415;
+            font-size: 3.6rem;
+            font-weight: 500;
+            line-height: 4.2rem; /* 116.667% */
+            letter-spacing: -0.144rem;
+        }
+    }
     &-desc {
+        @include screen(mobile) {
+            width: 35rem;
+            color: #51586a;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 2.6rem; /* 162.5% */
+        }
         width: 52.8rem;
         margin: auto;
         margin-top: 2rem;
     }
     &-name {
+        @include screen(mobile) {
+            color: #5d3bee;
+            font-size: 2rem;
+            font-weight: 500;
+            line-height: 4rem; /* 200% */
+            letter-spacing: -0.08rem;
+            text-decoration-line: underline;
+        }
         margin-top: 3rem;
         color: #5d3bee;
         font-size: 3.2rem;
@@ -492,6 +832,10 @@ button {
         text-decoration-line: underline;
     }
     &-list {
+        @include screen(mobile) {
+            flex-direction: column;
+            row-gap: 2rem;
+        }
         margin-top: 7rem;
         column-gap: 3rem;
         display: flex;
@@ -503,16 +847,45 @@ button {
 .cta {
     margin-top: 20rem;
     &-bg {
+        @include screen(mobile) {
+            width: 39.4rem;
+            height: 38.6rem;
+            object-fit: cover;
+        }
         top: 0;
         right: 0;
         left: 0;
         z-index: -1;
     }
     &-icon {
+        @include screen(mobile) {
+            padding-top: 0;
+            scale: 0.7;
+        }
         padding-top: 6.8rem;
         margin-bottom: 2rem;
     }
+    &-title {
+        @include screen(mobile) {
+            margin: auto;
+            width: 22.5rem;
+            color: #080415;
+            text-align: center;
+            font-size: 3.6rem;
+            font-weight: 500;
+            line-height: 4.2rem; /* 116.667% */
+            letter-spacing: -0.144rem;
+        }
+    }
     &-desc {
+        @include screen(mobile) {
+            width: 35rem;
+            color: #51586a;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 2.6rem; /* 162.5% */
+        }
         width: 57rem;
         margin: auto;
         margin-top: 2rem;
@@ -543,9 +916,15 @@ button {
         }
     }
     &-bottom {
+        @include screen(mobile) {
+            flex-direction: column-reverse;
+        }
         margin-top: 2rem;
         margin-bottom: 3rem;
         &__left {
+            @include screen(mobile) {
+                text-align: center;
+            }
             color: #525771;
             font-size: 1.8rem;
             font-weight: 400;
@@ -554,6 +933,10 @@ button {
         }
         &__right {
             display: flex;
+            @include screen(mobile) {
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
         }
         &__link {
             color: #525771;
